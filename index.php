@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoleStyle - Virtual Shoe Shop</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Scripts y links -->
     <script>
         tailwind.config = {
             theme: {
@@ -20,119 +20,41 @@
                 }
             }
         }
-    </script>
+    </script> <!-- configuracion tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script> <!-- enlace tailwind -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="font-sans bg-gray-50">
-    <!-- Minimal Header -->
-    <header class="border-b border-gray-200 py-4">
-        <div class="container mx-auto px-4 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <h1 class="text-2xl font-bold text-primary">SoleStyle</h1>
-                <span class="text-gray-500 text-sm">Virtual Shoe Shop</span>
-            </div>
-            
-            <!-- Navigation -->
-            <nav class="hidden md:flex space-x-8">
-                <a href="#" class="text-gray-700 hover:text-black transition" data-category="new">New Arrivals</a>
-                <a href="#" class="text-gray-700 hover:text-black transition" data-category="men">Men</a>
-                <a href="#" class="text-gray-700 hover:text-black transition" data-category="women">Women</a>
-                <a href="#" class="text-gray-700 hover:text-black transition" data-category="kids">Kids</a>
-                <a href="#" class="text-gray-700 hover:text-black transition" data-category="sale">Sale</a>
-            </nav>
-            
-            <div class="flex items-center space-x-4">
-                <button class="text-gray-700 hover:text-black transition">Sign In</button>
-                <button id="cart-button" class="text-gray-700 hover:text-black transition relative">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                    <span id="cart-count" class="absolute -top-2 -right-2 bg-black text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                </button>
-                
-                <!-- Mobile menu button -->
-                <button class="md:hidden text-gray-700 hover:text-black transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </header>
+    <!-- Integración del componente header.php -->
+    <?php include 'includes/header.php';?>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
         <div class="flex flex-col md:flex-row gap-8">
             <!-- Sidebar -->
             <div class="md:w-1/4 lg:w-1/5">
-                <!-- Categories -->
-                <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
-                    <h2 class="text-lg font-bold mb-4">Categories</h2>
-                    <ul class="space-y-2">
-                        <li>
-                            <button class="w-full py-2 px-4 bg-black text-white rounded-md text-left font-medium category-btn" data-category="all">
-                                All Shoes
-                            </button>
-                        </li>
-                        <li>
-                            <button class="w-full py-2 px-4 hover:bg-gray-100 rounded-md text-left font-medium category-btn" data-category="running">
-                                Running
-                            </button>
-                        </li>
-                        <li>
-                            <button class="w-full py-2 px-4 bg-gray-100 hover:bg-gray-200 rounded-md text-left font-medium category-btn" data-category="casual">
-                                Casual
-                            </button>
-                        </li>
-                        <li>
-                            <button class="w-full py-2 px-4 hover:bg-gray-100 rounded-md text-left font-medium category-btn" data-category="athletic">
-                                Athletic
-                            </button>
-                        </li>
-                        <li>
-                            <button class="w-full py-2 px-4 hover:bg-gray-100 rounded-md text-left font-medium category-btn" data-category="formal">
-                                Formal
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-                
-                <!-- Price Range -->
-                <div class="bg-white p-6 rounded-lg shadow-sm">
-                    <h2 class="text-lg font-bold mb-4">Price Range</h2>
-                    <div class="mb-6">
-                        <input 
-                            type="range" 
-                            min="0" 
-                            max="300" 
-                            value="150" 
-                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" 
-                            id="price-range">
-                    </div>
-                    <div class="flex justify-between">
-                        <span>$0</span>
-                        <span id="price-value">$150</span>
-                        <span>$300</span>
-                    </div>
-                </div>
+                <!-- Integración de los componentes categories.php y price-range.php -->
+                <?php include 'includes/categories.php';?>
+                <?php include 'includes/price-range.php';?>
             </div>
-            
             <!-- Products Grid -->
             <div class="md:w-3/4 lg:w-4/5">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="products-grid">
+
                     <!-- Product 1 -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="running" data-price="129.99">
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="nike" data-price="829.950">
                         <div class="relative">
-                            <img src="/placeholder.svg?height=300&width=300" alt="Air Runner Pro" class="w-full h-64 object-cover">
+                            <img src="img/nikeStructure25-1.png" alt="Nike Structure 25" class="w-full h-64 object-cover">
                             <div class="absolute top-4 left-4">
                                 <span class="bg-black text-white text-xs px-2 py-1 rounded-md">New</span>
                             </div>
                         </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-medium">Air Runner Pro</h3>
-                            <p class="text-gray-500 text-sm mb-2">running</p>
+                            <h3 class="text-lg font-medium">Nike Structure 25</h3>
+                            <p class="text-gray-500 text-sm mb-2">Running</p>
                             <div class="flex justify-between items-center">
-                                <span class="font-bold">$129.99</span>
-                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="1" data-name="Air Runner Pro" data-price="129.99">
+                                <span class="font-bold">$829.950</span>
+                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="1" data-name="Nike Structure 25" data-price="829.950">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                     </svg>
@@ -143,16 +65,16 @@
                     </div>
                     
                     <!-- Product 2 -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="casual" data-price="89.99">
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="nike" data-price="489.450">
                         <div class="relative">
-                            <img src="/placeholder.svg?height=300&width=300" alt="Classic Comfort" class="w-full h-64 object-cover">
+                            <img src="img/nikeInteractRun-2.png" alt="Nike Interact Run" class="w-full h-64 object-cover">
                         </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-medium">Classic Comfort</h3>
-                            <p class="text-gray-500 text-sm mb-2">casual</p>
+                            <h3 class="text-lg font-medium">Nike Interact Run</h3>
+                            <p class="text-gray-500 text-sm mb-2">Running</p>
                             <div class="flex justify-between items-center">
-                                <span class="font-bold">$89.99</span>
-                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="2" data-name="Classic Comfort" data-price="89.99">
+                                <span class="font-bold">$489.450</span>
+                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="2" data-name="Nike Interact Run" data-price="489.450">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                     </svg>
@@ -163,19 +85,19 @@
                     </div>
                     
                     <!-- Product 3 -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="casual" data-price="99.99">
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="adidas" data-price="549.950">
                         <div class="relative">
-                            <img src="/placeholder.svg?height=300&width=300" alt="Urban Street" class="w-full h-64 object-cover">
+                            <img src="img/tenisSuperstart2Adidas-1.png" alt="Tenis Superstart 2" class="w-full h-64 object-cover">
                             <div class="absolute top-4 left-4">
                                 <span class="bg-black text-white text-xs px-2 py-1 rounded-md">New</span>
                             </div>
                         </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-medium">Urban Street</h3>
-                            <p class="text-gray-500 text-sm mb-2">casual</p>
+                            <h3 class="text-lg font-medium">Tenis Superstart 2</h3>
+                            <p class="text-gray-500 text-sm mb-2">Casual</p>
                             <div class="flex justify-between items-center">
-                                <span class="font-bold">$99.99</span>
-                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="3" data-name="Urban Street" data-price="99.99">
+                                <span class="font-bold">$549.950</span>
+                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="3" data-name="Tenis Superstart 2" data-price="549.950">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                     </svg>
@@ -184,18 +106,19 @@
                             </div>
                         </div>
                     </div>
+                    <!-- listos -->
                     
                     <!-- Product 4 -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="athletic" data-price="149.99">
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="puma" data-price="160.000">
                         <div class="relative">
-                            <img src="/placeholder.svg?height=300&width=300" alt="Sport Elite" class="w-full h-64 object-cover">
+                            <img src="img/tenisDeviateNitro3Puma-1.png" alt="Devia Nitro 3" class="w-full h-64 object-cover">
                         </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-medium">Sport Elite</h3>
-                            <p class="text-gray-500 text-sm mb-2">athletic</p>
+                            <h3 class="text-lg font-medium">Devia Nitro 3</h3>
+                            <p class="text-gray-500 text-sm mb-2">Athletic</p>
                             <div class="flex justify-between items-center">
-                                <span class="font-bold">$149.99</span>
-                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="4" data-name="Sport Elite" data-price="149.99">
+                                <span class="font-bold">$160.000</span>
+                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="4" data-name="Devia Nitro 3" data-price="160.000">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                     </svg>
@@ -206,16 +129,16 @@
                     </div>
                     
                     <!-- Product 5 -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="formal" data-price="179.99">
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="converse" data-price="130.000">
                         <div class="relative">
-                            <img src="/placeholder.svg?height=300&width=300" alt="Executive Leather" class="w-full h-64 object-cover">
+                            <img src="img/waveTrainerConverse-1.png" alt="Wave Trainer" class="w-full h-64 object-cover">
                         </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-medium">Executive Leather</h3>
-                            <p class="text-gray-500 text-sm mb-2">formal</p>
+                            <h3 class="text-lg font-medium">Wave Trainer</h3>
+                            <p class="text-gray-500 text-sm mb-2">Casual</p>
                             <div class="flex justify-between items-center">
-                                <span class="font-bold">$179.99</span>
-                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="5" data-name="Executive Leather" data-price="179.99">
+                                <span class="font-bold">$130.000</span>
+                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="5" data-name="Wave Trainer" data-price="130.000">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                     </svg>
@@ -226,22 +149,22 @@
                     </div>
                     
                     <!-- Product 6 -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="running" data-price="119.99">
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="skechers" data-price="150.000">
                         <div class="relative">
-                            <img src="/placeholder.svg?height=300&width=300" alt="Trail Blazer" class="w-full h-64 object-cover">
+                            <img src="img/parsonRalvenSkechers-1.png" alt="Parson Ralven" class="w-full h-64 object-cover">
                             <div class="absolute top-4 left-4">
                                 <span class="bg-red-600 text-white text-xs px-2 py-1 rounded-md">Sale</span>
                             </div>
                         </div>
                         <div class="p-4">
-                            <h3 class="text-lg font-medium">Trail Blazer</h3>
-                            <p class="text-gray-500 text-sm mb-2">running</p>
+                            <h3 class="text-lg font-medium">Parson Ralven</h3>
+                            <p class="text-gray-500 text-sm mb-2">Running</p>
                             <div class="flex justify-between items-center">
                                 <div>
-                                    <span class="font-bold">$119.99</span>
-                                    <span class="text-gray-500 line-through text-sm ml-2">$149.99</span>
+                                    <span class="font-bold">$150.000</span>
+                                    <span class="text-gray-500 line-through text-sm ml-2">$180.000</span>
                                 </div>
-                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="6" data-name="Trail Blazer" data-price="119.99">
+                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="6" data-name="Parson Ralven" data-price="150.000">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                     </svg>
