@@ -1,0 +1,23 @@
+{
+  "name": "ecommerce_shoes",
+  "version": "1.0.0",
+  "description": "Ecommerce of shoes\r https://v0.dev/chat/virtual-shoe-store-1u4KxxEp3H5?b=b_YeKUeAMR1B2",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garbanzo12/Ecommerce_shoes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/garbanzo12/Ecommerce_shoes/issues"
+  },
+  "homepage": "https://github.com/garbanzo12/Ecommerce_shoes#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.1.1"
+  }
+}
