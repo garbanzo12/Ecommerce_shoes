@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Confirmar Pedido</title>
+		<title>Document</title>
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script>
 			tailwind.config = {
@@ -31,17 +31,67 @@
 
 				<!-- Navigation -->
 				<nav class="hidden md:flex space-x-8">
-					<a href="../index.html" class="text-gray-700 hover:text-black transition" data-category="new">Inicio</a>
-					<a href="#" class="text-gray-700 hover:text-black transition" data-category="men">Hombres</a>
-					<a href="#" class="text-gray-700 hover:text-black transition" data-category="women">Mujeres</a>
-					<a href="#" class="text-gray-700 hover:text-black transition" data-category="kids">Niños</a>
-					<a href="#" class="text-gray-700 hover:text-black transition" data-category="sale">Recién Llegados</a>
+					<a
+						href="#"
+						class="text-gray-700 hover:text-black transition"
+						data-category="new"
+						>New Arrivals</a
+					>
+					<a
+						href="#"
+						class="text-gray-700 hover:text-black transition"
+						data-category="men"
+						>Men</a
+					>
+					<a
+						href="#"
+						class="text-gray-700 hover:text-black transition"
+						data-category="women"
+						>Women</a
+					>
+					<a
+						href="#"
+						class="text-gray-700 hover:text-black transition"
+						data-category="kids"
+						>Kids</a
+					>
+					<a
+						href="#"
+						class="text-gray-700 hover:text-black transition"
+						data-category="sale"
+						>Sale</a
+					>
 				</nav>
 
 				<div class="flex items-center space-x-4">
 					<button class="text-gray-700 hover:text-black transition">
-						Iniciar Sesión
+						Sign In
 					</button>
+					<button
+						id="cart-button"
+						class="text-gray-700 hover:text-black transition relative"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-6 w-6"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+							/>
+						</svg>
+						<span
+							id="cart-count"
+							class="absolute -top-2 -right-2 bg-black text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center"
+							>0</span
+						>
+					</button>
+
 					<!-- Mobile menu button -->
 					<button class="md:hidden text-gray-700 hover:text-black transition">
 						<svg
@@ -362,7 +412,7 @@
 							type="submit"
 							class="w-full p-3 bg-black hover:bg-gray-800 text-white rounded transition-all"
 						>
-							<a href="order-confirmed.html" class="decoration-none">Confirmar Pedido</a>
+							Confirmar Pedido
 						</button>
 					</div>
 				</form>
