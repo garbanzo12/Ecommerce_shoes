@@ -1,4 +1,5 @@
-<?php include("db.php"); ?>
+<?php include("db.php"); ?> <!-- ⬅️ Se incluye la bd -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,6 +9,9 @@
 </head>
 <body>
 <div class="admin-container">
+<a href="index.php">
+<?php include ("../includes/arrowSVG.php") ?>
+</a>
   <h2>Gestionar Categorías</h2>
   <form action="categorias.php" method="POST">
     <input type="text" name="nueva_categoria" placeholder="Nombre categoría" required>

@@ -20,6 +20,7 @@ body {
     color: #111;
     border-bottom: 1px solid #ccc;
     padding-bottom: .5rem;
+    
   }
   
   nav a {
@@ -66,3 +67,13 @@ body {
     border-radius: 8px;
   }
   
+
+  svg{
+    padding: 0;
+    margin: 0;
+  }
+
+  a{
+    padding: 0;
+    margin: 0;
+  }
