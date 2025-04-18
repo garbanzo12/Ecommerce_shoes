@@ -6,14 +6,7 @@
             <span class="text-gray-500 text-sm">Virtual Shoe Shop</span>
         </div>
         
-        <!-- Navigation -->
-        <nav class="hidden md:flex space-x-8">
-            <a href="#" class="text-gray-700 hover:text-black transition" data-category="new">New Arrivals</a>
-            <a href="#" class="text-gray-700 hover:text-black transition" data-category="men">Men</a>
-            <a href="#" class="text-gray-700 hover:text-black transition" data-category="women">Women</a>
-            <a href="#" class="text-gray-700 hover:text-black transition" data-category="kids">Kids</a>
-            <a href="#" class="text-gray-700 hover:text-black transition" data-category="sale">Sale</a>
-        </nav>
+     
         
         <div class="flex items-center space-x-4">
             <button class="text-gray-700 hover:text-black transition">Sign In</button>

@@ -75,7 +75,7 @@ if ($resultado && $resultado->num_rows > 0):
             <p class="text-gray-500 text-sm mb-2"><?= $producto['categoria'] ?></p>
             <p class="text-gray-400 text-sm mb-2"><?= $producto['descripcion'] ?></p>
             <div class="flex justify-between items-center">
-                <span class="font-bold">$<?= $precio_formateado ?></span>
+                <span class="font-bold" id="">$<?= $precio_formateado ?></span>
                 <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn"
                     data-id="<?= $producto['id'] ?>"
                     data-name="<?= $producto['nombre'] ?>"
@@ -281,26 +281,7 @@ $conexion->close();
             });
         });
         
-        // Price range filter
-        const priceRange = document.getElementById('price-range');
-        const priceValue = document.getElementById('price-value');
-        
-        priceRange.addEventListener('input', () => {
-            const maxPrice = priceRange.value;
-            priceValue.textContent = `$${maxPrice}`;
-            
-            // Filter products by price
-            productCards.forEach(card => {
-                const price = parseFloat(card.getAttribute('data-price'));
-                
-                if (price <= maxPrice) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-        });
-        
+    
         // Navigation category filtering
         const navLinks = document.querySelectorAll('nav a');
         
