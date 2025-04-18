@@ -12,7 +12,28 @@
     </div>
     <div class="flex justify-between">
         <span>$0</span>
-        <span id="price-value">$150</span>
-        <span>$300</span>
+        <span id="price-value">$10000</span>
+        <span>$300000</span>
     </div>
 </div>
+
+<script>
+    console.log('sdfnsfdn')
+// Actualiza el texto mostrado
+const rangeInput = document.getElementById("price-range");
+const priceValue = document.getElementById("price-value");
+
+rangeInput.addEventListener("input", function () {
+    priceValue.textContent = `$${this.value}`;
+
+    // Filtrar productos visibles por precio
+    document.querySelectorAll(".product-card").forEach(card => {
+        const price = parseFloat(card.dataset.price); // asegúrate de tener data-price
+        if (price <= this.value) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
+</script>
