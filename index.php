@@ -40,136 +40,65 @@
             <!-- Products Grid -->
             <div class="md:w-3/4 lg:w-4/5">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="products-grid">
+                <?php
+// Conexión a la base de datos
+$conexion = new mysqli("localhost", "root", "123456", "tienda_sena");
 
-                    <!-- Product 1 -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="nike" data-price="829.950">
-                        <div class="relative">
-                            <img src="img/nikeStructure25-1.png" alt="Nike Structure 25" class="w-full h-64 object-cover">
-                            <div class="absolute top-4 left-4">
-                                <span class="bg-black text-white text-xs px-2 py-1 rounded-md">New</span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="text-lg font-medium">Nike Structure 25</h3>
-                            <p class="text-gray-500 text-sm mb-2">Running</p>
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold">$829.950</span>
-                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="1" data-name="Nike Structure 25" data-price="829.950">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                    </svg>
-                                    <span>Add to Cart</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Product 2 -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="nike" data-price="489.450">
-                        <div class="relative">
-                            <img src="img/nikeInteractRun-2.png" alt="Nike Interact Run" class="w-full h-64 object-cover">
-                        </div>
-                        <div class="p-4">
-                            <h3 class="text-lg font-medium">Nike Interact Run</h3>
-                            <p class="text-gray-500 text-sm mb-2">Running</p>
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold">$489.450</span>
-                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="2" data-name="Nike Interact Run" data-price="489.450">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                    </svg>
-                                    <span>Add to Cart</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Product 3 -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="adidas" data-price="549.950">
-                        <div class="relative">
-                            <img src="img/tenisSuperstart2Adidas-1.png" alt="Tenis Superstart 2" class="w-full h-64 object-cover">
-                            <div class="absolute top-4 left-4">
-                                <span class="bg-black text-white text-xs px-2 py-1 rounded-md">New</span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="text-lg font-medium">Tenis Superstart 2</h3>
-                            <p class="text-gray-500 text-sm mb-2">Casual</p>
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold">$549.950</span>
-                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="3" data-name="Tenis Superstart 2" data-price="549.950">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                    </svg>
-                                    <span>Add to Cart</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- listos -->
-                    
-                    <!-- Product 4 -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="puma" data-price="160.000">
-                        <div class="relative">
-                            <img src="img/tenisDeviateNitro3Puma-1.png" alt="Devia Nitro 3" class="w-full h-64 object-cover">
-                        </div>
-                        <div class="p-4">
-                            <h3 class="text-lg font-medium">Devia Nitro 3</h3>
-                            <p class="text-gray-500 text-sm mb-2">Athletic</p>
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold">$160.000</span>
-                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="4" data-name="Devia Nitro 3" data-price="160.000">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                    </svg>
-                                    <span>Add to Cart</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Product 5 -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="converse" data-price="130.000">
-                        <div class="relative">
-                            <img src="img/waveTrainerConverse-1.png" alt="Wave Trainer" class="w-full h-64 object-cover">
-                        </div>
-                        <div class="p-4">
-                            <h3 class="text-lg font-medium">Wave Trainer</h3>
-                            <p class="text-gray-500 text-sm mb-2">Casual</p>
-                            <div class="flex justify-between items-center">
-                                <span class="font-bold">$130.000</span>
-                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="5" data-name="Wave Trainer" data-price="130.000">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                    </svg>
-                                    <span>Add to Cart</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Product 6 -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="skechers" data-price="150.000">
-                        <div class="relative">
-                            <img src="img/parsonRalvenSkechers-1.png" alt="Parson Ralven" class="w-full h-64 object-cover">
-                            <div class="absolute top-4 left-4">
-                                <span class="bg-red-600 text-white text-xs px-2 py-1 rounded-md">Sale</span>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="text-lg font-medium">Parson Ralven</h3>
-                            <p class="text-gray-500 text-sm mb-2">Running</p>
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <span class="font-bold">$150.000</span>
-                                    <span class="text-gray-500 line-through text-sm ml-2">$180.000</span>
-                                </div>
-                                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn" data-id="6" data-name="Parson Ralven" data-price="150.000">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                    </svg>
-                                    <span>Add to Cart</span>
-                                </button>
+if ($conexion->connect_error) {
+    die("❌ Error de conexión: " . $conexion->connect_error);
+}
+
+// Consulta para obtener productos con su categoría
+$sql = "SELECT productos.*, categorias.nombre AS categoria 
+        FROM productos 
+        INNER JOIN categorias ON productos.categoria_id = categorias.id";
+
+$resultado = $conexion->query($sql);
+
+if ($resultado && $resultado->num_rows > 0):
+    while ($producto = $resultado->fetch_assoc()):
+        // Convertimos el precio al formato con punto decimal
+        $precio_formateado = number_format($producto['precio'], 3, '.', '');
+?>
+    <!-- Product Card -->
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="<?= strtolower($producto['categoria']) ?>" data-price="<?= $precio_formateado ?>">
+        <div class="relative">
+        <img src="admin/<?= $producto['imagen'] ?>" alt="<?= $producto['nombre'] ?>" class="w-full h-64 object-cover">
+        <div class="absolute top-4 left-4">
+                <?php if ($producto['oferta'] === '1'): ?>
+                    <span class="bg-black text-white text-xs px-2 py-1 rounded-md">New</span>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="p-4">
+            <h3 class="text-lg font-medium"><?= $producto['nombre'] ?></h3>
+            <p class="text-gray-500 text-sm mb-2"><?= $producto['categoria'] ?></p>
+            <p class="text-gray-400 text-sm mb-2"><?= $producto['descripcion'] ?></p>
+            <div class="flex justify-between items-center">
+                <span class="font-bold">$<?= $precio_formateado ?></span>
+                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn"
+                    data-id="<?= $producto['id'] ?>"
+                    data-name="<?= $producto['nombre'] ?>"
+                    data-price="<?= $precio_formateado ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span>Add to Cart</span>
+                </button>
+            </div>
+        </div>
+    </div>
+<?php
+    endwhile;
+else:
+    echo "<p>No hay productos disponibles.</p>";
+endif;
+
+// Cerrar conexión
+$conexion->close();
+?>
+
+                        </button>
                             </div>
                         </div>
                     </div>
