@@ -1,0 +1,73 @@
+/* Estandarizo estilos */
+html {
+	/* margin: 0; */
+	box-sizing: border-box;
+	font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+  background-image: url("/img/imagen-login.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+	margin: 0;
+	height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  /* Formulario */
+  .form-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.3rem 1.5rem rgb(0, 0, 0);
+    width: 40rem;
+    height: 50rem;
+  }
+  
+  .form-container__title {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 3rem;
+  }
+  
+  .form__group {
+    margin-bottom: 2rem;
+  }
+  
+  .form__label {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .form__input {
+    width: calc(100% - 1rem);
+    padding: 1rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.4rem;
+    margin-bottom: 1rem;
+  } 
+  
+  .form__button {
+    width: calc(100% - 1rem);
+    padding: 1rem;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .form__button:hover {
+    background-color: #0056b3;
+  }
