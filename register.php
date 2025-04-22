@@ -1,9 +1,5 @@
 <?php
-// Configuración de la base de datos
-$host = "localhost"; // Cambia por tu servidor de base de datos
-$dbname = "tienda_sena"; // Cambia por tu base de datos
-$username = "root"; // Tu usuario de la base de datos
-$password = "root"; // Tu contraseña de la base de datos
+include("/admin/db.php");; 
 
 // Conectar a la base de datos
 $conn = new mysqli($host, $username, $password, $dbname);
