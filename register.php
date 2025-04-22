@@ -1,11 +1,12 @@
-<?php
-include("/admin/db.php");; 
 
-// Conectar a la base de datos
-$conn = new mysqli($host, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
+<?php
+$conn = new mysqli("localhost", "root", "123456", "tienda_sena"); // ⬅️ Conexion a la bd
+
+if ($conn->connect_error) { // ⬅️ Condicional para el error
+    die("Conexión fallida: " . $conn->connect_error); // ⬅️ mensaje de error
 }
+// Conectar a la base de datos
+
 
 // Verificar si se enviaron los datos del formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -59,10 +60,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error al subir la imagen.";
     }
 }
-
-// Cerrar conexión
 $conn->close();
+
 ?>
+<?php
+session_start(); // Iniciar sesión en cada página que necesite acceso a $_SESSION
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,7 +101,7 @@ $conn->close();
       </div>
       <div></div>
       <div class="flex items-center space-x-4">
-        <button class="transition">Sign In</button>
+        <a href="./Login/index.php" class="transition">Sign In</a>
       </div>
     </div>
   </header>

@@ -1,9 +1,10 @@
 <?php
-include("/admin/db.php"); // Incluir la conexión a la base de datos
+session_start(); // Iniciar sesión al principio del script
 
-$conn = new mysqli($host, $user, $pass, $dbname);
+$conn = new mysqli("localhost", "root", "123456", "tienda_sena");
+
 if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+    die("Conexión fallida: " . $conn->connect_error);
 }
 
 $mensaje = "";
@@ -22,8 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $usuario = $resultado->fetch_assoc();
 
         if (password_verify($password, $usuario['password'])) {
+            // Configurar variables de sesión
+            $_SESSION['usuario_id'] = $usuario['id'];
+            $_SESSION['usuario_email'] = $usuario['email'];
+            $_SESSION['logged_in'] = true;
+            
             $mensaje = "Inicio de sesión exitoso. ¡Bienvenido, " . htmlspecialchars($usuario['email']) . "!";
-            header('location: /index.php');
+            header('Location: ../index.php');
+            exit(); // Importante salir después de redireccionar
         } else {
             $mensaje = "Contraseña incorrecta.";
         }
@@ -61,6 +68,7 @@ $conn->close();
         <input type="password" id="password" name="password" class="form__input" placeholder="Escribe tu contraseña" required>
       </div>
       <button type="submit" class="form__button">Iniciar Sesión</button>
+      <a class="form__button"> Registrarse</a>
     </form>
   </main>
 </body>

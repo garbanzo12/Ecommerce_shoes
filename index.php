@@ -1,3 +1,12 @@
+<?php
+session_start(); // Iniciar sesión al principio del script
+
+// Verificar si el usuario está logueado
+if (!isset($_SESSION['logged_in'])) {
+    header('Location: ./Login/index.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
