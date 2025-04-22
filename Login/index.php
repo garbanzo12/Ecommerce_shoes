@@ -1,9 +1,8 @@
 <?php
-// Configuración de la base de datos
 $host = "localhost";
 $user = "root";
-$pass = "";
-$dbname = "tu_base_datos";
+$pass = "root";
+$dbname = "tienda_sena";
 
 $conn = new mysqli($host, $user, $pass, $dbname);
 if ($conn->connect_error) {
@@ -27,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if (password_verify($password, $usuario['password'])) {
             $mensaje = "Inicio de sesión exitoso. ¡Bienvenido, " . htmlspecialchars($usuario['email']) . "!";
-            // Aquí podrías redirigir con header("Location: dashboard.php");
+            header('location: /index.php');
         } else {
             $mensaje = "Contraseña incorrecta.";
         }
@@ -47,7 +46,7 @@ $conn->close();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login</title>
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <main class="form-container">
