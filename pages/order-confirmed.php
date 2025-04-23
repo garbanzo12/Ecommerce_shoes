@@ -92,6 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['carrito']) && coun
                     <table class="w-full border-collapse">
                         <thead class="border-b border-gray-200 text-left">
                             <tr>
+                                <th class="px-6 py-3">Foto</th>
                                 <th class="px-6 py-3">Nombre</th>
                                 <th class="px-6 py-3">Cantidad</th>
                                 <th class="px-6 py-3">Precio</th>
@@ -101,6 +102,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['carrito']) && coun
                         <tbody>
                         <?php foreach ($productos_guardados as $item): ?>
                             <tr class="border-b border-gray-200">
+                                <td class="px-6 py-3">
+                                    <?php if (!empty($item['imagen'])): ?>
+                                        <img src="../admin/<?= htmlspecialchars($item['imagen']) ?>" alt="<?= htmlspecialchars($item['nombre']) ?>" class="w-16 h-16 object-cover rounded shadow border">
+                                    <?php else: ?>
+                                        <span class="text-gray-400">Sin imagen</span>
+                                    <?php endif; ?>
+                                </td>
                                 <td class="px-6 py-3"><?php echo htmlspecialchars($item['nombre']); ?></td>
                                 <td class="px-6 py-3"><?php echo $item['cantidad']; ?></td>
                                 <td class="px-6 py-3">$<?php echo number_format($item['precio'], 2); ?></td>

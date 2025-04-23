@@ -54,9 +54,14 @@ if (!isset($_SESSION['logged_in'])) {
 include 'includes/conexion.php';
 
 // Consulta para obtener productos con su categoría
+$categoriaWhere = '';
+if (isset($_GET['categoria']) && is_numeric($_GET['categoria'])) {
+    $categoria_id = intval($_GET['categoria']);
+    $categoriaWhere = " WHERE productos.categoria_id = $categoria_id ";
+}
 $sql = "SELECT productos.*, categorias.nombre AS categoria 
         FROM productos 
-        INNER JOIN categorias ON productos.categoria_id = categorias.id";
+        INNER JOIN categorias ON productos.categoria_id = categorias.id" . $categoriaWhere;
 
 $resultado = $conn->query($sql);
 
