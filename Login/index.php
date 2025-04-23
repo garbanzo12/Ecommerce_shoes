@@ -50,7 +50,7 @@ $conn->close();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <main class="form-container">
@@ -68,7 +68,7 @@ $conn->close();
         <input type="password" id="password" name="password" class="form__input" placeholder="Escribe tu contraseña" required>
       </div>
       <button type="submit" class="form__button">Iniciar Sesión</button>
-      <a class="form__button"> Registrarse</a>
+      <a href="../register.php" class="form__button--logout"> Registrarse</a>
     </form>
   </main>
 </body>
