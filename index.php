@@ -44,7 +44,7 @@
                     <!-- Product 1 -->
                     <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="nike" data-price="829.950">
                         <div class="relative">
-                            <a href="overview.php">
+                            <a href="overview.php?id=1">
                                 <img src="img/nikeStructure25-1.png" alt="Nike Structure 25" class="w-full h-64 object-cover">
                             </a>
                             <div class="absolute top-4 left-4">
@@ -69,7 +69,9 @@
                     <!-- Product 2 -->
                     <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="nike" data-price="489.450">
                         <div class="relative">
+                            <a href="overview.php?id=2">
                             <img src="img/nikeInteractRun-2.png" alt="Nike Interact Run" class="w-full h-64 object-cover">
+                            </a>
                         </div>
                         <div class="p-4">
                             <h3 class="text-lg font-medium">Nike Interact Run</h3>
@@ -89,7 +91,9 @@
                     <!-- Product 3 -->
                     <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="adidas" data-price="549.950">
                         <div class="relative">
+                            <a href="overview.php?id=3">
                             <img src="img/tenisSuperstart2Adidas-1.png" alt="Tenis Superstart 2" class="w-full h-64 object-cover">
+                            </a>
                             <div class="absolute top-4 left-4">
                                 <span class="bg-black text-white text-xs px-2 py-1 rounded-md">New</span>
                             </div>
@@ -113,7 +117,9 @@
                     <!-- Product 4 -->
                     <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="puma" data-price="160.000">
                         <div class="relative">
+                            <a href="overview.php?id=4">
                             <img src="img/tenisDeviateNitro3Puma-1.png" alt="Devia Nitro 3" class="w-full h-64 object-cover">
+                            </a>
                         </div>
                         <div class="p-4">
                             <h3 class="text-lg font-medium">Devia Nitro 3</h3>
@@ -133,7 +139,9 @@
                     <!-- Product 5 -->
                     <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="converse" data-price="130.000">
                         <div class="relative">
-                            <img src="img/waveTrainerConverse-1.png" alt="Wave Trainer" class="w-full h-64 object-cover">
+                            <a href="overview.php?id=5">
+                                <img src="img/waveTrainerConverse-1.png" alt="Wave Trainer" class="w-full h-64 object-cover">
+                            </a>
                         </div>
                         <div class="p-4">
                             <h3 class="text-lg font-medium">Wave Trainer</h3>
@@ -153,7 +161,9 @@
                     <!-- Product 6 -->
                     <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="skechers" data-price="150.000">
                         <div class="relative">
-                            <img src="img/parsonRalvenSkechers-1.png" alt="Parson Ralven" class="w-full h-64 object-cover">
+                            <a href="overview.php?id=6">
+                                <img src="img/parsonRalvenSkechers-1.png" alt="Parson Ralven" class="w-full h-64 object-cover">
+                            </a>
                             <div class="absolute top-4 left-4">
                                 <span class="bg-red-600 text-white text-xs px-2 py-1 rounded-md">Sale</span>
                             </div>

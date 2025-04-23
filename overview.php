@@ -1,3 +1,58 @@
+<?php
+session_start(); // Inicia la sesión
+// Simulación de datos de productos
+$products = [
+    1 => [
+        'name' => 'Nike Structure 25',
+        'price' => '829.950',
+        'description' => 'Running shoes with great support.',
+        'image' => 'img/nikeStructure25-1.png',
+        'features' => ['Feature 1', 'Feature 2', 'Feature 3']
+    ],
+    2 => [
+        'name' => 'Nike Interact Run',
+        'price' => '489.450',
+        'description' => 'Lightweight running shoes.',
+        'image' => 'img/nikeInteractRun-2.png',
+        'features' => ['Feature 1', 'Feature 2', 'Feature 3']
+    ],
+    3 => [
+        'name' => 'Tenis Superstart 2',
+        'price' => '549.950',
+        'description' => 'Casual shoes for everyday wear.',
+        'image' => 'img/tenisSuperstart2Adidas-1.png',
+        'features' => ['Feature 1', 'Feature 2', 'Feature 3']
+    ],
+    4 => [
+        'name' => 'Devia Nitro 3',
+        'price' => '160.000',
+        'description' => 'Athletic shoes for performance.',
+        'image' => 'img/tenisDeviateNitro3Puma-1.png',
+        'features' => ['Feature 1', 'Feature 2', 'Feature 3']
+    ],
+    5 => [
+        'name' => 'Wave Trainer',
+        'price' => '130.000',
+        'description' => 'Comfortable casual shoes.',
+        'image' => 'img/waveTrainerConverse-1.png',
+        'features' => ['Feature 1', 'Feature 2', 'Feature 3']
+    ],
+    6 => [
+        'name' => 'Parson Ralven',
+        'price' => '150.000',
+        'description' => 'Running shoes with a stylish design.',
+        'image' => 'img/parsonRalvenSkechers-1.png',
+        'features' => ['Feature 1', 'Feature 2', 'Feature 3']
+    ],
+];
+
+// Captura el ID del producto de la URL
+$product_id = isset($_GET['id']) ? (int)$_GET['id'] : 1; // Por defecto, muestra el producto 1
+
+// Obtiene el producto correspondiente
+$product = $products[$product_id] ?? $products[1]; // Si no se encuentra, muestra el producto 1
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,11 +87,7 @@
       <section class="flex flex-col lg:flex-row gap-6">
             <div class="flex flex-col w-full lg:w-1/2">
                 <div class="w-full max-h-[500px] rounded-md bg-[#ffffff] flex items-center justify-center mb-3 overflow-hidden p-4">
-                <img
-                    src="https://storage.googleapis.com/a1aa/image/96f2770c-040a-4a97-cfc9-10b3e75e54e7.jpg"
-                    alt="Main product image"
-                    class="max-w-full max-h-full object-contain rounded"
-                />
+                <img src="<?php echo $product['image']; ?>" alt="Main product image" class="max-w-full max-h-full object-contain rounded" />
                 </div>
                 <div class="flex space-x-3 overflow-x-auto scrollbar-hide">
                 <img class="w-40 h-40 p-2 object-contain bg-[#ffffff] rounded" src="https://storage.googleapis.com/a1aa/image/3993226b-b11d-4da9-9928-6aecf9a44eae.jpg" />
@@ -47,22 +98,11 @@
             </div>
 
         <div class="flex-1">
-          <span class="inline-block bg-[#1a1a1a] text-white text-[10px] font-semibold rounded px-2 py-[2px] mb-2">New Arrival</span>
-          <h1 class="text-xl font-bold mb-1">Air Runner Pro</h1>
-
-          <div class="flex items-center text-yellow-400 text-xs mb-1">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-            <span class="text-gray-500 ml-2">(24 reviews)</span>
-          </div>
-
-          <p class="text-lg font-bold mb-3">$129.99</p>
-          <p class="text-sm text-gray-700 mb-4">
-            The Air Runner Pro is designed for maximum comfort and style. Featuring advanced cushioning technology and breathable materials, these shoes are perfect for all-day wear.
-          </p>
+            <div class="flex flex-col w-full lg:w-1/2">
+                <h1 class="text-2xl font-bold mb-2"><?php echo $product['name']; ?></h1>
+                <p class="text-lg text-[#ff5722] font-semibold mb-2">$<?php echo $product['price']; ?></p>
+                <p class="mb-4"><?php echo $product['description']; ?></p>
+            </div>
 
           <div class="mb-4">
             <label class="block text-sm font-semibold mb-1">Select Size</label>
@@ -98,16 +138,14 @@
       </section>
 
       <section class="mt-8">
-        <div class="mt-4 text-sm max-w-prose">
-          <strong>Features</strong>
-          <ul class="list-disc list-inside mt-1 space-y-1">
-            <li>Breathable mesh upper</li>
-            <li>Cushioned insole for all-day comfort</li>
-            <li>Durable rubber outsole</li>
-            <li>Lightweight design</li>
-            <li>Available in multiple colors</li>
-          </ul>
-        </div>
+      <div class="flex flex-col w-full lg:w-1/2">
+                <h2 class="text-lg font-semibold mb-2">Características:</h2>
+                <ul class="list-disc list-inside mb-4">
+                    <?php foreach ($product['features'] as $feature): ?>
+                        <li><?php echo $feature; ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
       </section>
 
       <section class="mt-10 flex gap-6">
