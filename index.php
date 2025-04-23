@@ -50,67 +50,62 @@ if (!isset($_SESSION['logged_in'])) {
             <div class="md:w-3/4 lg:w-4/5">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="products-grid">
                 <?php
-// Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "123456", "tienda_sena");
+                // Conexión a la base de datos
+                $conexion = new mysqli("localhost", "root", "root", "tienda_sena");
 
-if ($conexion->connect_error) {
-    die("❌ Error de conexión: " . $conexion->connect_error);
-}
+                if ($conexion->connect_error) {
+                    die("❌ Error de conexión: " . $conexion->connect_error);
+                }
 
-// Consulta para obtener productos con su categoría
-$sql = "SELECT productos.*, categorias.nombre AS categoria 
-        FROM productos 
-        INNER JOIN categorias ON productos.categoria_id = categorias.id";
+                // Consulta para obtener productos con su categoría
+                $sql = "SELECT productos.*, categorias.nombre AS categoria 
+                        FROM productos 
+                        INNER JOIN categorias ON productos.categoria_id = categorias.id";
 
-$resultado = $conexion->query($sql);
+                $resultado = $conexion->query($sql);
 
-if ($resultado && $resultado->num_rows > 0):
-    while ($producto = $resultado->fetch_assoc()):
-        // Convertimos el precio al formato con punto decimal
-        $precio_formateado = number_format($producto['precio'], 3, '.', '');
-?>
-    <!-- Product Card -->
-    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="<?= strtolower($producto['categoria']) ?>" data-price="<?= $precio_formateado ?>">
-        <div class="relative">
-        <img src="admin/<?= $producto['imagen'] ?>" alt="<?= $producto['nombre'] ?>" class="w-full h-64 object-cover">
-        <div class="absolute top-4 left-4">
-                <?php if ($producto['oferta'] === '1'): ?>
-                    <span class="bg-black text-white text-xs px-2 py-1 rounded-md">New</span>
-                <?php endif; ?>
-            </div>
-        </div>
-        <div class="p-4">
-            <h3 class="text-lg font-medium"><?= $producto['nombre'] ?></h3>
-            <p class="text-gray-500 text-sm mb-2"><?= $producto['categoria'] ?></p>
-            <p class="text-gray-400 text-sm mb-2"><?= $producto['descripcion'] ?></p>
-            <div class="flex justify-between items-center">
-                <span class="font-bold" id="">$<?= $precio_formateado ?></span>
-                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn"
-                    data-id="<?= $producto['id'] ?>"
-                    data-name="<?= $producto['nombre'] ?>"
-                    data-price="<?= $precio_formateado ?>">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                    <span>Add to Cart</span>
-                </button>
-            </div>
-        </div>
-    </div>
-<?php
-    endwhile;
-else:
-    echo "<p>No hay productos disponibles.</p>";
-endif;
-
-// Cerrar conexión
-$conexion->close();
-?>
-
-                        </button>
-                            </div>
+                if ($resultado && $resultado->num_rows > 0):
+                    while ($producto = $resultado->fetch_assoc()):
+                        // Convertimos el precio al formato con punto decimal
+                        $precio_formateado = number_format($producto['precio'], 3, '.', '');
+                ?>
+                <!-- Product Card -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="<?= strtolower($producto['categoria']) ?>" data-price="<?= $precio_formateado ?>">
+                    <div class="relative">
+                        <img src="admin/<?= $producto['imagen'] ?>" alt="<?= $producto['nombre'] ?>" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 left-4">
+                            <?php if ($producto['oferta'] === '1'): ?>
+                                <span class="bg-black text-white text-xs px-2 py-1 rounded-md">New</span>
+                            <?php endif; ?>
                         </div>
                     </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-medium"><?= $producto['nombre'] ?></h3>
+                        <p class="text-gray-500 text-sm mb-2"><?= $producto['categoria'] ?></p>
+                        <p class="text-gray-400 text-sm mb-2"><?= $producto['descripcion'] ?></p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold">$<?= $precio_formateado ?></span>
+                            <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn"
+                                data-id="<?= $producto['id'] ?>"
+                                data-name="<?= $producto['nombre'] ?>"
+                                data-price="<?= $precio_formateado ?>">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                </svg>
+                                <span>Add to Cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                    endwhile;
+                else:
+                    echo "<p>No hay productos disponibles.</p>";
+                endif;
+
+                // Cerrar conexión
+                $conexion->close();
+                ?>
                 </div>
             </div>
         </div>
@@ -147,8 +142,8 @@ $conexion->close();
 
     <!-- JavaScript -->
     <script>
-        // Cart functionality
-        let cart = [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
         const cartButton = document.getElementById('cart-button');
         const cartModal = document.getElementById('cart-modal');
         const closeCart = document.getElementById('close-cart');
@@ -157,17 +152,17 @@ $conexion->close();
         const cartCount = document.getElementById('cart-count');
         const emptyCartMessage = document.getElementById('empty-cart-message');
         const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
-        
+
         // Add to cart
         addToCartButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const id = button.getAttribute('data-id');
                 const name = button.getAttribute('data-name');
                 const price = parseFloat(button.getAttribute('data-price'));
-                
+
                 // Check if item is already in cart
                 const existingItem = cart.find(item => item.id === id);
-                
+
                 if (existingItem) {
                     existingItem.quantity += 1;
                 } else {
@@ -178,44 +173,47 @@ $conexion->close();
                         quantity: 1
                     });
                 }
-                
+
                 updateCart();
-                
+
+                // Save cart to local storage
+                localStorage.setItem('cart', JSON.stringify(cart));
+
                 // Show notification
                 const notification = document.createElement('div');
                 notification.className = 'fixed bottom-4 right-4 bg-black text-white px-4 py-2 rounded-md shadow-lg z-50';
                 notification.textContent = `Added ${name} to cart`;
                 document.body.appendChild(notification);
-                
+
                 setTimeout(() => {
                     notification.remove();
                 }, 2000);
             });
         });
-        
+
         // Open cart modal
         cartButton.addEventListener('click', () => {
             cartModal.classList.remove('hidden');
         });
-        
+
         // Close cart modal
         closeCart.addEventListener('click', () => {
             cartModal.classList.add('hidden');
         });
-        
+
         // Close cart when clicking outside
         cartModal.addEventListener('click', (e) => {
             if (e.target === cartModal) {
                 cartModal.classList.add('hidden');
             }
         });
-        
+
         // Update cart UI
         function updateCart() {
             // Update cart count
             const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
             cartCount.textContent = totalItems;
-            
+
             // Update cart items
             if (cart.length === 0) {
                 emptyCartMessage.classList.remove('hidden');
@@ -223,7 +221,7 @@ $conexion->close();
                 cartItems.appendChild(emptyCartMessage);
             } else {
                 emptyCartMessage.classList.add('hidden');
-                
+
                 let cartHTML = '';
                 cart.forEach(item => {
                     cartHTML += `
@@ -243,9 +241,9 @@ $conexion->close();
                         </div>
                     `;
                 });
-                
+
                 cartItems.innerHTML = cartHTML;
-                
+
                 // Add event listeners to remove buttons
                 document.querySelectorAll('.remove-item').forEach(button => {
                     button.addEventListener('click', () => {
@@ -255,89 +253,13 @@ $conexion->close();
                     });
                 });
             }
-            
+
             // Update total
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             cartTotal.textContent = `$${total.toFixed(2)}`;
         }
-        
-        // Category filtering
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        const productCards = document.querySelectorAll('.product-card');
-        
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                categoryButtons.forEach(btn => {
-                    btn.classList.remove('bg-black', 'text-white');
-                    btn.classList.add('hover:bg-gray-100');
-                });
-                
-                // Add active class to clicked button
-                button.classList.add('bg-black', 'text-white');
-                button.classList.remove('hover:bg-gray-100');
-                
-                const category = button.getAttribute('data-category');
-                
-                // Filter products
-                productCards.forEach(card => {
-                    if (category === 'all' || card.getAttribute('data-category') === category) {
-                        card.classList.remove('hidden');
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
-            });
-        });
-        
-    
-        // Navigation category filtering
-        const navLinks = document.querySelectorAll('nav a');
-        
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                const category = link.getAttribute('data-category');
-                
-                // Reset category buttons
-                categoryButtons.forEach(btn => {
-                    btn.classList.remove('bg-black', 'text-white');
-                    btn.classList.add('hover:bg-gray-100');
-                    
-                    if (btn.getAttribute('data-category') === 'all') {
-                        btn.classList.add('bg-black', 'text-white');
-                    }
-                });
-                
-                // Filter products
-                if (category === 'new') {
-                    productCards.forEach(card => {
-                        const hasNewTag = card.querySelector('.bg-black.text-white.text-xs');
-                        if (hasNewTag) {
-                            card.classList.remove('hidden');
-                        } else {
-                            card.classList.add('hidden');
-                        }
-                    });
-                } else if (category === 'sale') {
-                    productCards.forEach(card => {
-                        const hasSaleTag = card.querySelector('.bg-red-600.text-white.text-xs');
-                        if (hasSaleTag) {
-                            card.classList.remove('hidden');
-                        } else {
-                            card.classList.add('hidden');
-                        }
-                    });
-                } else {
-                    // For men, women, kids - in a real app, these would have their own data attributes
-                    // For this demo, we'll just show all products
-                    productCards.forEach(card => {
-                        card.classList.remove('hidden');
-                    });
-                }
-            });
-        });
+
+        updateCart();
     </script>
 </body>
 </html>
