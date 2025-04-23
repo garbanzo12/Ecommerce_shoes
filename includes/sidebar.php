@@ -106,6 +106,17 @@ $nombreUsuario = isset($_SESSION['usuario_email']) ? $_SESSION['usuario_email'] 
             </li>
             <li>
                 <a
+                    href="/Ecommerce_shoes/pages/products-manage.php"
+                    class="flex items-center text-gray-600 hover:text-blue-500 transition-colors group"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 text-gray-500 group-hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h6M9 7v2a4 4 0 014 4h6M3 7h6M3 17h6" />
+                    </svg>
+                    Gestionar productos
+                </a>
+            </li>
+            <li>
+                <a
                     href="/Ecommerce_shoes/pages/orders-list.php"
                     class="flex items-center text-gray-600 hover:text-blue-500 transition-colors group"
                 >
