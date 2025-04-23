@@ -28,7 +28,10 @@ $productos = $conn->query("SELECT productos.*, categorias.nombre as categoria FR
         <?php if (isset($_GET['deleted'])): ?>
             <div class="mb-4 p-2 bg-red-100 text-red-800 rounded">¡Producto eliminado correctamente!</div>
         <?php endif; ?>
-        <a href="product-edit.php" class="mb-6 inline-block bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded transition">Crear producto</a>
+        <?php if (isset($_GET['success'])): ?>
+            <div class="mb-4 p-2 bg-green-100 text-green-800 rounded">¡Producto agregado correctamente!</div>
+        <?php endif; ?>
+        <a href="product-add.php" class="mb-6 inline-block bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded transition font-semibold">Agregar producto</a>
         <table class="w-full border-collapse bg-white rounded shadow">
             <thead class="border-b border-gray-200">
                 <tr>

@@ -71,9 +71,9 @@ if ($resultado && $resultado->num_rows > 0):
         $precio_formateado = number_format($producto['precio'], 3, '.', '');
 ?>
     <!-- Product Card -->
-    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="<?= strtolower($producto['categoria']) ?>" data-price="<?= $precio_formateado ?>">
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card cursor-pointer" data-category="<?= strtolower($producto['categoria']) ?>" data-price="<?= $precio_formateado ?>" onclick="window.location.href='pages/product-view.php?id=<?= $producto['id'] ?>'">
         <div class="relative">
-        <img src="admin/<?= $producto['imagen'] ?>" alt="<?= $producto['nombre'] ?>" class="w-full h-64 object-cover">
+        <img src="uploads/<?= htmlspecialchars($producto['imagen']) ?>" alt="<?= htmlspecialchars($producto['nombre']) ?>" class="w-full h-64 object-cover">
         <div class="absolute top-4 left-4">
                 <?php if ($producto['oferta'] === '1'): ?>
                     <span class="bg-black text-white text-xs px-2 py-1 rounded-md">New</span>
@@ -86,7 +86,7 @@ if ($resultado && $resultado->num_rows > 0):
             <p class="text-gray-400 text-sm mb-2"><?= $producto['descripcion'] ?></p>
             <div class="flex justify-between items-center">
                 <span class="font-bold" id="">$<?= $precio_formateado ?></span>
-                <form method="POST" action="admin/agregar_carrito.php">
+                <form method="POST" action="admin/agregar_carrito.php" onclick="event.stopPropagation();">
                     <input type="hidden" name="id" value="<?= $producto['id'] ?>">
                     <input type="hidden" name="nombre" value="<?= htmlspecialchars($producto['nombre']) ?>">
                     <input type="hidden" name="precio" value="<?= $producto['precio'] ?>">

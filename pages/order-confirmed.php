@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['carrito']) && coun
                             <tr class="border-b border-gray-200">
                                 <td class="px-6 py-3">
                                     <?php if (!empty($item['imagen'])): ?>
-                                        <img src="../admin/<?= htmlspecialchars($item['imagen']) ?>" alt="<?= htmlspecialchars($item['nombre']) ?>" class="w-16 h-16 object-cover rounded shadow border">
+                                        <img src="../uploads/<?= htmlspecialchars($item['imagen']) ?>" alt="<?= htmlspecialchars($item['nombre']) ?>" class="w-16 h-16 object-cover rounded shadow border">
                                     <?php else: ?>
                                         <span class="text-gray-400">Sin imagen</span>
                                     <?php endif; ?>

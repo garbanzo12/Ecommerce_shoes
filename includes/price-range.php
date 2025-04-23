@@ -19,7 +19,7 @@ $conexion->close();
 <!-- Price Range -->
 <div class="bg-white p-6 rounded-lg shadow-sm price-range">
     <h2 class="text-lg font-bold mb-4">Price Range</h2>
-    <div class="mb-6">
+    <div class="mb-6 flex gap-3 items-center">
         <input 
             type="range" 
             min="<?php echo $min_price; ?>" 
@@ -27,6 +27,14 @@ $conexion->close();
             value="<?php echo $max_price; ?>" 
             class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" 
             id="price-range">
+        <input 
+            type="number" 
+            min="<?php echo $min_price; ?>" 
+            max="<?php echo $max_price; ?>" 
+            value="<?php echo $max_price; ?>" 
+            id="price-input" 
+            class="w-24 border border-gray-300 rounded px-2 py-1 text-right" 
+            step="0.01">
     </div>
     <div class="flex justify-between">
         <span id="min-price">$<?php echo $min_price; ?></span>
@@ -36,22 +44,29 @@ $conexion->close();
 </div>
 
 <script>
-    console.log('sdfnsfdn')
-// Actualiza el texto mostrado
 const rangeInput = document.getElementById("price-range");
+const priceInput = document.getElementById("price-input");
 const priceValue = document.getElementById("price-value");
 
-rangeInput.addEventListener("input", function () {
-    priceValue.textContent = `$${this.value}`;
-
-    // Filtrar productos visibles por precio
+function updatePriceFilter(val) {
+    priceValue.textContent = `$${val}`;
+    priceInput.value = val;
+    rangeInput.value = val;
     document.querySelectorAll(".product-card").forEach(card => {
-        const price = parseFloat(card.dataset.price); // asegúrate de tener data-price
-        if (price <= this.value) {
+        const price = parseFloat(card.dataset.price);
+        if (price <= val) {
             card.style.display = "block";
         } else {
             card.style.display = "none";
         }
     });
+}
+
+rangeInput.addEventListener("input", function () {
+    updatePriceFilter(this.value);
+});
+priceInput.addEventListener("input", function () {
+    let v = parseFloat(this.value);
+    if (!isNaN(v)) updatePriceFilter(v);
 });
 </script>
