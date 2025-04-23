@@ -50,19 +50,15 @@ if (!isset($_SESSION['logged_in'])) {
             <div class="md:w-3/4 lg:w-4/5">
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="products-grid">
                 <?php
-// Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "", "tienda_sena");
-
-if ($conexion->connect_error) {
-    die("❌ Error de conexión: " . $conexion->connect_error);
-}
+// Conexión a la base de datos centralizada
+include 'includes/conexion.php';
 
 // Consulta para obtener productos con su categoría
 $sql = "SELECT productos.*, categorias.nombre AS categoria 
         FROM productos 
         INNER JOIN categorias ON productos.categoria_id = categorias.id";
 
-$resultado = $conexion->query($sql);
+$resultado = $conn->query($sql);
 
 if ($resultado && $resultado->num_rows > 0):
     while ($producto = $resultado->fetch_assoc()):
@@ -85,15 +81,17 @@ if ($resultado && $resultado->num_rows > 0):
             <p class="text-gray-400 text-sm mb-2"><?= $producto['descripcion'] ?></p>
             <div class="flex justify-between items-center">
                 <span class="font-bold" id="">$<?= $precio_formateado ?></span>
-                <button class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2 add-to-cart-btn"
-                    data-id="<?= $producto['id'] ?>"
-                    data-name="<?= $producto['nombre'] ?>"
-                    data-price="<?= $precio_formateado ?>">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                    <span>Add to Cart</span>
-                </button>
+                <form method="POST" action="admin/agregar_carrito.php">
+                    <input type="hidden" name="id" value="<?= $producto['id'] ?>">
+                    <input type="hidden" name="nombre" value="<?= htmlspecialchars($producto['nombre']) ?>">
+                    <input type="hidden" name="precio" value="<?= $producto['precio'] ?>">
+                    <button type="submit" class="bg-black text-white px-3 py-2 rounded-md flex items-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                        <span>Agregar al carrito</span>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
@@ -104,7 +102,7 @@ else:
 endif;
 
 // Cerrar conexión
-$conexion->close();
+$conn->close();
 ?>
 
                         </button>
@@ -181,15 +179,9 @@ $conexion->close();
                 
                 updateCart();
                 
-                // Show notification
-                const notification = document.createElement('div');
-                notification.className = 'fixed bottom-4 right-4 bg-black text-white px-4 py-2 rounded-md shadow-lg z-50';
-                notification.textContent = `Added ${name} to cart`;
-                document.body.appendChild(notification);
-                
-                setTimeout(() => {
-                    notification.remove();
-                }, 2000);
+                // Guardar el carrito en localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+                // No redireccionar ni mostrar modal
             });
         });
         
