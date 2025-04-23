@@ -56,7 +56,7 @@ if (!isset($_SESSION['logged_in'])) {
             </div>
             <div class="p-4 border-t border-gray-200">
                 <button class="w-full bg-black text-white py-2 rounded-md font-medium hover:bg-gray-800 transition">
-                    Proceder al pago
+                    <a href="../pages/order.php">Proceder al pago</a>
                 </button>
             </div>
         </div>
