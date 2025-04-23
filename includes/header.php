@@ -17,12 +17,18 @@ if (isset($_SESSION['carrito'])) {
             <?php if (isset($_SESSION['logged_in'])): ?>
                 <a href="/Ecommerce_shoes/logout.php" class="text-white hover:underline mr-4">Cerrar sesión</a>
                 <a href="/Ecommerce_shoes/pages/user-edit.php" class="text-white hover:underline mr-4">Editar perfil</a>
-                <a href="/Ecommerce_shoes/pages/products-manage.php" class="text-white hover:underline mr-4">Gestionar productos</a>
+
+
+                <?php if (isset($_SESSION['usuario_email']) && $_SESSION['usuario_email'] == 'santiago@gmail.com'): ?>
+                        <a href="/Ecommerce_shoes/pages/products-manage.php" class="text-white hover:underline mr-4">Gestionar productos</a>
                 <a href="/Ecommerce_shoes/pages/categories.php" class="text-white hover:underline mr-4">Gestionar categorías</a>
                 <a href="/Ecommerce_shoes/pages/orders-list.php" class="text-white hover:underline mr-4">Gestionar pedidos</a>
                 <a href="/Ecommerce_shoes/pages/order.php" class="text-white hover:underline mr-4">Mis pedidos</a>
+                <?php endif; ?>
+
             <?php endif; ?>
         </div>
+
         <div class="relative">
             <a href="/Ecommerce_shoes/admin/carrito.php" class="text-white hover:text-gray-300">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">

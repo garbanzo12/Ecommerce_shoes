@@ -1,14 +1,19 @@
 <?php
+if (isset($_SESSION['usuario_email']) && $_SESSION['usuario_email'] !== 'santiago@gmail.com'){
+    header('Location: ../Login/index.php');
+    exit();
+}
+if (isset($_SESSION['id']) && $_SESSION['id'] !== '1'){
+    header('Location: ../Login/index.php');
+    exit();
+}
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include_once('../includes/conexion.php');
 
 // Solo permitir acceso a usuarios con rol admin o el usuario logueado
-if (!isset($_SESSION['usuario_id'])) {
-    header('Location: ../index.php');
-    exit();
-}
+
 
 // Eliminar pedido si se solicita
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
@@ -36,6 +41,10 @@ $usuario_id = $_SESSION['usuario_id'];
 $is_admin = (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin');
 $sql = $is_admin ? "SELECT * FROM pedidos ORDER BY fecha DESC, hora DESC" : "SELECT * FROM pedidos WHERE usuario_id=$usuario_id ORDER BY fecha DESC, hora DESC";
 $pedidos = $conn->query($sql);
+if (isset($_SESSION['usuario_email']) && $_SESSION['usuario_email'] !== 'santiago@gmail.com'){
+    header('Location: ../Login/index.php');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">

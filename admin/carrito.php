@@ -1,5 +1,12 @@
 <?php
-session_start(); // Iniciar sesión
+session_start();
+include_once('../includes/conexion.php');
+
+// Verificar si el usuario está logueado
+if (!isset($_SESSION['logged_in'])) {
+    header('Location: ../Login/index.php');
+    exit();
+}
 
 // Eliminar producto del carrito
 if (isset($_GET['eliminar']) && is_numeric($_GET['eliminar'])) {
@@ -21,41 +28,42 @@ if (isset($_POST['actualizar_cantidad'], $_POST['key']) && is_numeric($_POST['ke
     header('Location: carrito.php');
     exit();
 }
-
-// Verificar si el usuario está logueado
-if (!isset($_SESSION['logged_in'])) {
-    header('Location: ./Login/index.php');
-    exit();
-}
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="font-sans bg-gray-50">
-    <!-- Integración del componente header.php -->
-    <?php include '../includes/header.php'; ?>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-        <div class="bg-white rounded-lg shadow-lg max-w-3xl mx-auto">
-            <div class="p-4 border-b border-gray-200">
-                <h2 class="text-xl font-bold">Tu Carrito</h2>
-            </div>
-            <div id="cart-items" class="p-4 overflow-y-auto">
-                <!-- Los productos del carrito se mostrarán aquí -->
-                <?php
-                if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0):
-                    $total = 0;
-                    foreach ($_SESSION['carrito'] as $key => $item):
-                        $subtotal = $item['precio'] * $item['cantidad'];
-                        $total += $subtotal;
-                ?>
+<?php include '../includes/header.php'; ?>
+
+<main class="container mx-auto px-4 py-8">
+    <div class="bg-white rounded-lg shadow-lg max-w-3xl mx-auto">
+        <div class="p-4 border-b border-gray-200">
+            <h2 class="text-xl font-bold">Tu Carrito</h2>
+        </div>
+        <div id="cart-items" class="p-4 overflow-y-auto">
+            <?php if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) > 0): ?>
+                <?php $total = 0; ?>
+                <?php foreach ($_SESSION['carrito'] as $key => $item): ?>
+                    <?php
+                    // Obtener stock actual del producto desde la base de datos
+                    $stmtStock = $conn->prepare("SELECT stock FROM productos WHERE id = ?");
+                    $stmtStock->bind_param("i", $item['id']);
+                    $stmtStock->execute();
+                    $resStock = $stmtStock->get_result();
+                    $rowStock = $resStock->fetch_assoc();
+                    $stock = $rowStock ? (int)$rowStock['stock'] : 99;
+                    $stmtStock->close();
+
+                    $subtotal = $item['precio'] * $item['cantidad'];
+                    $total += $subtotal;
+                    ?>
                     <div class="flex justify-between items-center py-4 border-b border-gray-100">
                         <div>
                             <h3 class="font-medium text-base mb-1 text-gray-900 flex items-center gap-2">
@@ -64,7 +72,7 @@ if (!isset($_SESSION['logged_in'])) {
                             </h3>
                             <form method="post" class="flex items-center gap-2 mt-2">
                                 <input type="hidden" name="key" value="<?= $key ?>">
-                                <input type="number" name="actualizar_cantidad" value="<?= $item['cantidad'] ?>" min="1" class="w-16 border border-gray-300 rounded-md px-2 py-1 text-center focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition shadow-sm bg-gray-50">
+                                <input type="number" name="actualizar_cantidad" value="<?= $item['cantidad'] ?>" min="1" max="<?= $stock ?>" class="w-16 border border-gray-300 rounded-md px-2 py-1 text-center focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition shadow-sm bg-gray-50">
                                 <button type="submit" class="bg-black text-white px-3 py-1 rounded-md hover:bg-gray-800 transition text-sm font-semibold shadow focus:ring-2 focus:ring-blue-400 focus:outline-none">Actualizar</button>
                             </form>
                             <p class="text-gray-500 text-xs mt-2">
@@ -79,21 +87,20 @@ if (!isset($_SESSION['logged_in'])) {
                         </div>
                     </div>
                 <?php endforeach; ?>
-                    <div class="text-right font-bold mt-4">Total: $<?= number_format($total, 2) ?></div>
-                <?php else: ?>
-                    <div id="empty-cart-message" class="text-center text-gray-500 py-8">
-                        Tu carrito está vacío.
-                    </div>
-                <?php endif; ?>
-            </div>
-            <div class="p-4 border-t border-gray-200">
-                <button class="w-full bg-black text-white py-2 rounded-md font-medium hover:bg-gray-800 transition">
-                    <a href="../pages/order.php">Proceder al pago</a>
-                </button>
-            </div>
+                <div class="text-right font-bold mt-4">Total: $<?= number_format($total, 2) ?></div>
+            <?php else: ?>
+                <div id="empty-cart-message" class="text-center text-gray-500 py-8">
+                    Tu carrito está vacío.
+                </div>
+            <?php endif; ?>
         </div>
-    </main>
+        <div class="p-4 border-t border-gray-200">
+            <button class="w-full bg-black text-white py-2 rounded-md font-medium hover:bg-gray-800 transition">
+                <a href="../pages/order.php">Proceder al pago</a>
+            </button>
+        </div>
+    </div>
+</main>
 
-    <!-- JavaScript eliminado: ahora solo PHP gestiona el carrito -->
 </body>
 </html>

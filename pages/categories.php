@@ -1,4 +1,14 @@
 <?php
+if (isset($_SESSION['usuario_email']) && $_SESSION['usuario_email'] !== 'santiago@gmail.com'){
+    header('Location: ../Login/index.php');
+    exit();
+}
+if (session_status() === PHP_SESSION_NONE) session_start();
+include_once('../includes/conexion.php');
+if (!isset($_SESSION['logged_in'])) {
+    header('Location: ../Login/index.php');
+    exit();
+}
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -41,7 +51,10 @@ if (isset($_POST['edit_id'], $_POST['edit_nombre'])) {
     header('Location: categories.php?edited=1');
     exit();
 }
-
+if (isset($_SESSION['usuario_email']) && $_SESSION['usuario_email'] !== 'santiago@gmail.com'){
+    header('Location: ../Login/index.php');
+    exit();
+}
 // Obtener categorías
 $categorias = $conn->query("SELECT * FROM categorias ORDER BY id DESC");
 ?>

@@ -1,11 +1,9 @@
 <?php
+
 if (session_status() === PHP_SESSION_NONE) session_start();
 include_once('../includes/conexion.php');
 
-if (!isset($_SESSION['usuario_id'])) {
-    header('Location: ../login.php');
-    exit();
-}
+
 $usuario_id = $_SESSION['usuario_id'];
 
 // Obtener datos actuales

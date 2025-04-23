@@ -1,7 +1,12 @@
 <?php
+
+
 if (session_status() === PHP_SESSION_NONE) session_start();
 include_once('../includes/conexion.php');
-
+if (!isset($_SESSION['logged_in'])) {
+    header('Location: ../Login/index.php');
+    exit();
+}
 // Eliminar producto
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
     $del_id = intval($_GET['delete']);
@@ -9,7 +14,10 @@ if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
     header('Location: products-manage.php?deleted=1');
     exit();
 }
-
+if (isset($_SESSION['usuario_email']) && $_SESSION['usuario_email'] !== 'santiago@gmail.com'){
+    header('Location: ../Login/index.php');
+    exit();
+}
 // Obtener productos
 $productos = $conn->query("SELECT productos.*, categorias.nombre as categoria FROM productos LEFT JOIN categorias ON productos.categoria_id = categorias.id ORDER BY productos.id ASC");
 ?>

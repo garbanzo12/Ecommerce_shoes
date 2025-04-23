@@ -12,13 +12,13 @@ $mensaje = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
-
+    $_SESSION['rol'] = 'Usuario';
     // Consulta al usuario
     $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $resultado = $stmt->get_result();
-
+ 
     if ($resultado->num_rows === 1) {
         $usuario = $resultado->fetch_assoc();
 

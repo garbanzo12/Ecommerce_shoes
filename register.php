@@ -15,8 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $apellidos = $_POST['apellidos'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $rol = $_POST['rol'];
+    $rol = 'Usuario';
 
+  
     // Validación simple de campos vacíos
     if (empty($nombre) || empty($apellidos) || empty($email) || empty($password) || empty($rol)) {
         echo "Todos los campos son obligatorios.";
@@ -136,11 +137,7 @@ session_start(); // Iniciar sesión en cada página que necesite acceso a $_SESS
           <input type="password" id="password" name="password" class="bg-white text-black w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu contraseña" required>
         </div>
 
-        <!-- Rol -->
-        <div class="space-y-2">
-          <label for="rol" class="block text-sm font-medium text-white">Rol</label>
-          <input type="text" id="rol" name="rol" class="bg-white text-black w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ingresa tu rol" required>
-        </div>
+ 
 
         <!-- Imagen -->
         <div class="space-y-2">

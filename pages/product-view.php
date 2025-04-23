@@ -18,6 +18,7 @@ if (!$res || $res->num_rows === 0) {
 }
 $producto = $res->fetch_assoc();
 $stmt->close();
+$_SESSION['stock'] = $producto['stock']
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,7 +34,7 @@ $stmt->close();
         <a href="../index.php" class="inline-block mb-2 text-blue-600 hover:underline font-semibold text-sm">← Volver al inicio</a>
         <div class="flex flex-col md:flex-row gap-8 items-center">
             <div class="flex-shrink-0 w-full md:w-56 flex justify-center items-center">
-                <img src="../uploads/<?= htmlspecialchars($producto['imagen']) ?>" alt="<?= htmlspecialchars($producto['nombre']) ?>" class="rounded-lg shadow border w-56 h-56 object-cover">
+                <img src="../admin/<?= htmlspecialchars($producto['imagen']) ?>" alt="<?= htmlspecialchars($producto['nombre']) ?>" class="rounded-lg shadow border w-56 h-56 object-cover">
             </div>
             <div class="flex-1 flex flex-col justify-between w-full gap-4">
                 <h1 class="text-2xl font-bold mb-2 border-b pb-2"><?= htmlspecialchars($producto['nombre']) ?></h1>

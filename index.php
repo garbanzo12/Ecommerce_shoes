@@ -2,10 +2,7 @@
 session_start(); // Iniciar sesión al principio del script
 
 // Verificar si el usuario está logueado
-if (!isset($_SESSION['logged_in'])) {
-    header('Location: ./Login/index.php');
-    exit();
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +70,7 @@ if ($resultado && $resultado->num_rows > 0):
     <!-- Product Card -->
     <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card cursor-pointer" data-category="<?= strtolower($producto['categoria']) ?>" data-price="<?= $precio_formateado ?>" onclick="window.location.href='pages/product-view.php?id=<?= $producto['id'] ?>'">
         <div class="relative">
-        <img src="uploads/<?= htmlspecialchars($producto['imagen']) ?>" alt="<?= htmlspecialchars($producto['nombre']) ?>" class="w-full h-64 object-cover">
+        <img src="admin/<?= htmlspecialchars($producto['imagen']) ?>" alt="<?= htmlspecialchars($producto['nombre']) ?>" class="w-full h-64 object-cover">
         <div class="absolute top-4 left-4">
                 <?php if ($producto['oferta'] === '1'): ?>
                     <span class="bg-black text-white text-xs px-2 py-1 rounded-md">New</span>
