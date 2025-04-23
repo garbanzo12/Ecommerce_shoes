@@ -51,7 +51,7 @@ if (!isset($_SESSION['logged_in'])) {
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="products-grid">
                 <?php
 // Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "123456", "tienda_sena");
+$conexion = new mysqli("localhost", "root", "", "tienda_sena");
 
 if ($conexion->connect_error) {
     die("❌ Error de conexión: " . $conexion->connect_error);

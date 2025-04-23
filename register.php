@@ -1,6 +1,6 @@
 
 <?php
-$conn = new mysqli("localhost", "root", "123456", "tienda_sena"); // ⬅️ Conexion a la bd
+$conn = new mysqli("localhost", "root", "", "tienda_sena"); // ⬅️ Conexion a la bd
 
 if ($conn->connect_error) { // ⬅️ Condicional para el error
     die("Conexión fallida: " . $conn->connect_error); // ⬅️ mensaje de error

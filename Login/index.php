@@ -1,7 +1,7 @@
 <?php
 session_start(); // Iniciar sesión al principio del script
 
-$conn = new mysqli("localhost", "root", "123456", "tienda_sena");
+$conn = new mysqli("localhost", "root", "", "tienda_sena");
 
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
