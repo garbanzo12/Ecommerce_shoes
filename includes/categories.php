@@ -13,7 +13,7 @@
             </button>
         </li>
         <li>
-            <button class="w-full py-2 px-4 bg-gray-100 hover:bg-gray-200 rounded-md text-left font-medium category-btn" data-category="puma">
+            <button class="w-full py-2 px-4 hover:bg-gray-100 rounded-md text-left font-medium category-btn" data-category="puma">
                 Puma
             </button>
         </li>

@@ -44,7 +44,9 @@
                     <!-- Product 1 -->
                     <div class="bg-white rounded-lg shadow-sm overflow-hidden product-card" data-category="nike" data-price="829.950">
                         <div class="relative">
-                            <img src="img/nikeStructure25-1.png" alt="Nike Structure 25" class="w-full h-64 object-cover">
+                            <a href="overview.php">
+                                <img src="img/nikeStructure25-1.png" alt="Nike Structure 25" class="w-full h-64 object-cover">
+                            </a>
                             <div class="absolute top-4 left-4">
                                 <span class="bg-black text-white text-xs px-2 py-1 rounded-md">New</span>
                             </div>
