@@ -16,6 +16,7 @@ if (isset($_SESSION['carrito'])) {
             <a href="/Ecommerce_shoes/index.php" class="text-white hover:underline mr-4">Inicio</a>
             <?php if (isset($_SESSION['logged_in'])): ?>
                 <a href="/Ecommerce_shoes/logout.php" class="text-white hover:underline mr-4">Cerrar sesión</a>
+                <a href="/Ecommerce_shoes/pages/user-edit.php" class="text-white hover:underline mr-4">Editar perfil</a>
                 <a href="/Ecommerce_shoes/pages/products-manage.php" class="text-white hover:underline mr-4">Gestionar productos</a>
                 <a href="/Ecommerce_shoes/pages/categories.php" class="text-white hover:underline mr-4">Gestionar categorías</a>
                 <a href="/Ecommerce_shoes/pages/orders-list.php" class="text-white hover:underline mr-4">Gestionar pedidos</a>
